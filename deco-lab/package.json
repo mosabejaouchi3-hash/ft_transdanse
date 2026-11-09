@@ -1,0 +1,24 @@
+{
+  "name": "deco-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":	"nest start",
+    "start:dev":	"nest start --watch",
+    "start:debug":	"nest start --debug --watch",
+    "start:prod":	"node dist/main"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@nestjs/platform-socket.io": "^12.3.2",
+    "@nestjs/websockets": "^12.3.2"
+  }
+}
