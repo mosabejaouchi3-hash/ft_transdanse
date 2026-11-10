@@ -3,6 +3,7 @@ import { Chat } from '../generated/prisma/client.js';
 import { Injectable } from '@nestjs/common';
 import { CreateChatDto } from './dto/chat.dto.js';
 
+const MAX_MSG = 50;
 
 @Injectable()
 export class MessagesService
@@ -15,7 +16,7 @@ export class MessagesService
     }
 
     async findByRoom(roomId: string): Promise<{ id: number; senderId: string; text: string; createdAt: Date }[]> {
-        return await this.prisma.chat.findMany({
+        const messages = await this.prisma.chat.findMany({
             where: { roomId },
             select: {
                 id: true,
@@ -23,7 +24,9 @@ export class MessagesService
                 text: true,
                 createdAt: true,
             },
-            orderBy: { createdAt: 'asc' },
+            orderBy: { createdAt: 'desc' },
+            take: MAX_MSG,
         });
+        return messages.reverse();
     }
 }
